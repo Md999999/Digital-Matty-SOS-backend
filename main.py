@@ -9,5 +9,10 @@ app = FastAPI()
 SECRET_KEY = "mysecret" #used to sign and verify tokens should be secret
 ALGORITHM = "HS256" #to encrypt jwt
 ACCESS_TOKEN_EXPIRE_MINUTES = 30 #sets token to expire after 30 mins
-
-
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+#user will get token from the login section looks for a token in the request header
+users = {}
+#to store username and passowrds it is a dictionary and empty
+@app.post("/register")
+def register(form_data: OAuth2PasswordRequestForm = Depends()):
+#register section is made ,OAuth2PasswordRequestForm to collects the form data username and password)
