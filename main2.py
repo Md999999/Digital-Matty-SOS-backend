@@ -23,5 +23,7 @@ if username not in user_contacts:
 user_contacts[username].append(contact)
 #checkss if the username which is like the user is in the dictionary user contacts if it isnt then an empty list is madr for the user
 #appends the new contact to the list of contacts for the user that has logged in.
+return {"message": "Contact has been added"}
+#contact has been added message
 
 
