@@ -29,3 +29,8 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
     if not user_pass or user_pass != form_data.password:
         raise HTTPException(status_code=400, detail="Wrong credentials")
 #checks if the username is there and the password matches if it doesnt then its an error
+    payload = {
+        "sub": form_data.username,
+        "exp": datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    }
+#jwt payload is made sub is the username exp is when the token expires
