@@ -44,4 +44,7 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload.get("sub")
         #Decode the token it checks the signature and expiry gets the username from payload and return it
+    except JWTError:
+        raise HTTPException(status_code=401, detail="Invalid token")
+# error is made when token is expired 
 
