@@ -19,3 +19,10 @@ def send_sos(sos: SOSRequest, username: str = Depends(get_current_user)):
     "message" : sos.message
     "timestamp" : datetime.utcnow().isoformat()
   }
+  #sos end uppoint to send an sos and notify contacts based on the current user with the get current user event function creates an event with the current time and sos
+if username not in sos_logs:
+  sos_logs[username] = []
+  #checks if the username is in soslogs dixtionary if not it creates a new list for it
+sos_logs[username].append(event)
+#the event is appended for the current user which means it saves the event to the user log
+
