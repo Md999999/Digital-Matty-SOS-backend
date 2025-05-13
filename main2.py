@@ -13,3 +13,8 @@ class EmergencyContact(BaseModel):
 #pydantic makes sure the input has to match the structure
 user_contacts = {}
 #stores user contacts in the dictionary
+@app.post("/contacts")
+#handle posts requests to the function endpoint we want to create new emergency contacts
+def add_contact(contact: EmergencyContact, username: str = Depends(get_current_user)):
+# it makes sure it is in the emergency contact format hence con:eme 
+#username: str = Depends(get_current_user)): gets the  username of the current user
