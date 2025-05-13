@@ -30,5 +30,5 @@ return {"message": "Contact has been added"}
 def get_contacts(username: str = Depends(get_current_user)):
 #gets current user gets contacts for the current user by checking for their username which goes hand in hand with yhe user
 return user_contacts.get(username, [])
-#returns a list of contacts for the user fron the dictonary for the checked username no contacts are found then its empty
+#returns a list of contacts for the user fron the dictonary for the checked username no contacts are found then its empty.
 
