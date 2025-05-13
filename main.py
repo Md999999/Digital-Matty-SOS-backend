@@ -22,4 +22,10 @@ def register(form_data: OAuth2PasswordRequestForm = Depends()):
     users[form_data.username] = form_data.password
     return {"message": "User made"}
 #checks if its not taken the username if it isn't then a user is created
-
+ @app.post("/login")
+def login(form_data: OAuth2PasswordRequestForm = Depends()):
+#uses username and password-login section
+    user_pass = users.get(form_data.username)
+    if not user_pass or user_pass != form_data.password:
+        raise HTTPException(status_code=400, detail="Wrong credentials")
+#checks if the username is there and the password matches if it doesnt then its an error
