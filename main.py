@@ -34,3 +34,14 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
         "exp": datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     }
 #jwt payload is made sub is the username exp is when the token expires
+    token = jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+# JWT is encoded using the payload,secret key and algorithm
+    return {"access_token": token, "token_type": "bearer"}
+#token is returned in a normal way so the user knows how to use it
+def get_current_user(token: str = Depends(oauth2_scheme)):
+    #used to protect routes pulls the token from requests using oauth2
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload.get("sub")
+        #Decode the token it checks the signature and expiry gets the username from payload and return it
+
