@@ -11,4 +11,5 @@ class EmergencyContact(BaseModel):
     relationship: str
 #pydantic creates the class emergency contact to have values like name phone and relation
 #pydantic makes sure the input has to match the structure
-
+user_contacts = {}
+#stores user contacts in the dictionary
