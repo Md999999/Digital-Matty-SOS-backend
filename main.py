@@ -47,4 +47,9 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
 # error is made when token is expired 
+@app.get("/protected")
+def protected_route(username: str = Depends(get_current_user)):
+#protected section is made only people with actual valid token can to get this stage
+    return {"message": f"Hello, {username}! You're authenticated"}
+#youre authenticated message is returnef along with your username
 
