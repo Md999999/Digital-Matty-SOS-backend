@@ -18,3 +18,10 @@ user_contacts = {}
 def add_contact(contact: EmergencyContact, username: str = Depends(get_current_user)):
 # it makes sure it is in the emergency contact format hence con:eme 
 #username: str = Depends(get_current_user)): gets the  username of the current user
+if username not in user_contacts:
+    user_contacts[username] = []
+user_contacts[username].append(contact)
+#checkss if the username which is like the user is in the dictionary user contacts if it isnt then an empty list is madr for the user
+#appends the new contact to the list of contacts for the user that has logged in.
+
+
