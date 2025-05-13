@@ -5,4 +5,9 @@ from jose import jwt, JWTError
 # Import jwt to encode and decode jwts  JWTError is raised when the token is invalid or expired
 from datetime import datetime, timedelta
 # set when token expires
+app = FastAPI()
+SECRET_KEY = "mysecret" #used to sign and verify tokens should be secret
+ALGORITHM = "HS256" #to encrypt jwt
+ACCESS_TOKEN_EXPIRE_MINUTES = 30 #sets token to expire after 30 mins
+
 
