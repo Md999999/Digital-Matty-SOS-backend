@@ -16,3 +16,10 @@ users = {}
 @app.post("/register")
 def register(form_data: OAuth2PasswordRequestForm = Depends()):
 #register section is made ,OAuth2PasswordRequestForm to collects the form data username and password)
+    if form_data.username in users:
+        raise HTTPException(status_code=400, detail="User exists")
+#checks if the username already is there if it is an error is made
+    users[form_data.username] = form_data.password
+    return {"message": "User made"}
+#checks if its not taken the username if it isn't then a user is created
+
